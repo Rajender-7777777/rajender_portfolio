@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,7 +13,13 @@
     <link rel="stylesheet" href="hark.css" />
     <link rel="stylesheet" href="hark-hero.css" />
     <link rel="stylesheet" href="hark-charts.css" />
+    <script>
+      try { localStorage.removeItem("hark-theme"); } catch (e) {}
+      document.documentElement.setAttribute("data-theme", "dark");
+    </script>
     <style>
+      :root, :root[data-theme] { color-scheme: dark !important; }
+      :root { --x-accent-text: color-mix(in srgb, var(--fill-system-orange) 65%, var(--text-primary)); }
       .x-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
       .x-subhead { font: var(--type-heading); margin: 40px 0 16px; }
       .x-telugu {
@@ -94,15 +100,15 @@
       .x-refs { max-width: 80ch; font: var(--type-small); color: var(--text-secondary); }
       .x-ieee { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
       .x-ieee li { display: grid; grid-template-columns: 3em minmax(0, 1fr); gap: 0 8px; align-items: baseline; }
-      .x-ieee__n { font-weight: var(--weight-bold); color: var(--fill-system-orange); }
+      .x-ieee__n { font-weight: var(--weight-bold); color: var(--x-accent-text); }
       .x-ieee a { overflow-wrap: anywhere; }
       .x-flow { display: flex; flex-direction: column; width: 50%; margin: 8px 0 24px; padding: 0; list-style: none; counter-reset: flow; }
       .x-flow li { counter-increment: flow; display: flex; align-items: baseline; gap: 12px; padding: 14px 16px; border-radius: var(--r-s); background: var(--fill-tertiary); border: 1px solid var(--stroke-secondary); color: var(--text-primary); font: var(--type-label); }
-      .x-flow li::before { content: counter(flow, decimal-leading-zero); font: var(--type-caption); font-weight: var(--weight-medium); color: var(--fill-system-orange); }
+      .x-flow li::before { content: counter(flow, decimal-leading-zero); font: var(--type-caption); font-weight: var(--weight-medium); color: var(--x-accent-text); }
       .x-flow li:not(:last-child)::after { content: none; }
       .x-flow li + li { margin-top: 28px; position: relative; }
       .x-flow li + li .x-arrow { position: absolute; left: 50%; top: -24px; transform: translateX(-50%); color: var(--text-secondary); font: var(--type-small); line-height: 20px; }
-      .x-flow li.x-flow__end { background: var(--fill-primary); border-color: var(--fill-primary); color: var(--text-primary-on); }
+      .x-flow li.x-flow__end { background: color-mix(in srgb, var(--fill-system-orange) 16%, var(--fill-primary-on)); border-color: var(--fill-system-orange); color: var(--text-primary); font-weight: var(--weight-medium); }
       @media (max-width: 600px) { .x-flow { width: 100%; } }
       .x-view[hidden] { display: none; }
       .x-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 0 40px; margin: 0; padding: 0; list-style: none; }
@@ -184,7 +190,7 @@
       .x-feature--roadmap .x-goals::before { content: ""; position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; background: var(--stroke-primary); }
       .x-feature--roadmap .x-goal { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 20px; align-items: start; padding: 0; border-top: 0; max-width: none; }
       .x-feature--roadmap .x-goal__num { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--fill-primary); color: var(--text-primary-on); font: var(--type-heading); font-weight: var(--weight-bold); letter-spacing: 0; box-shadow: 0 0 0 4px var(--fill-tertiary); }
-      .x-goal__body { display: grid; gap: 6px; padding: 16px 20px; border-radius: var(--r-m); border: 1px solid var(--stroke-secondary); border-left: 3px solid var(--fill-primary); background: light-dark(color-mix(in srgb, var(--fill-primary-on) 75%, transparent), color-mix(in srgb, var(--text-primary) 6%, transparent)); }
+      .x-goal__body { display: grid; gap: 6px; padding: 16px 20px; border-radius: var(--r-m); border: 1px solid var(--stroke-secondary); border-left: 3px solid var(--fill-primary); background: color-mix(in srgb, var(--text-primary) 6%, transparent); }
       .x-feature--roadmap .x-goal__title { font: var(--type-body); font-weight: var(--weight-bold); }
       .x-feature--roadmap .x-feature__quote { justify-self: center; max-width: 52ch; margin: 8px 0 0; padding: 0; border: 0; text-align: center; }
       .x-feature--roadmap .x-feature__quote::before { content: ""; display: block; width: 48px; height: 3px; margin: 0 auto 20px; border-radius: var(--r-pill); background: var(--fill-primary); }
@@ -217,7 +223,6 @@
           <a href="#part4">Our Project</a>
           <a href="#learnings">Moments &amp; Future Goals</a>
         </nav>
-        <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch to dark theme"></button>
       </header>
       <main class="main">
         <div class="x-view" id="v-home" data-view="home">
